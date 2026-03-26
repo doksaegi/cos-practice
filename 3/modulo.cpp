@@ -5,7 +5,7 @@ using namespace std;
 int modulo(int a, int b)
 {
 
-	return 0
+	return 0;
 }
 
 int main(int argc, char *argv[])
