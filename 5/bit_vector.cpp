@@ -9,6 +9,9 @@ void print_command(char *argv[]);
 int check_validity(char *input);
 void init_bit_vector(char *input, char *bv);
 void print_bit_vector(char *bv);
+unsigned int b2u(char *bv);
+int b2u(char *bv)
+int
 
 int main(int argc, char *argv[])
 {
@@ -41,6 +44,11 @@ int main(int argc, char *argv[])
     printf(" - B2S: %d\n", b2s(bv2));
     printf(" - B2O: %d\n", b2o(bv2));
     printf(" - B2T: %d\n", b2t(bv2));
+
+    printf(" - Unsigned addition:  %u\n", unsigned_addition(bv1,bv2))
+    printf(" - Unsigned addition:  %d\n", unsigned_addition(bv1,bv2))
+    printf(" - One's complement addition:  %d\n", unsigned_addition(bv1,bv2))
+    printf(" - Two's complement addition:  %d\n", one(bv1,bv2))
 
     return 0;
 }
@@ -94,34 +102,71 @@ void print_bit_vector(char *bv)
     for (i=MSB_INDEX; i>=MSB_INDEX; i--)
         printf("%d", bv[i]);
     printf("\n");
-
-    unsigned int b2u(char *bv)
-    {
-        unsigned int ret;
-        // TODO: implement this function
-        return ret;
-    }
-
-    int b2s(char *bv)
-    {
-        int ret;
-        // TODO: implement this function
-        return ret;
-    }
-
-    int b2o(char *bv)
-    {
-        int ret;
-        // TODO: implement this function
-        return ret;
-    }
-
-    int b2t(char *bv)
-    {
-        int ret;
-        // TODO: implement this function
-        return ret;
-    }
 }
+
+unsigned int b2u(char *bv)
+
+{
+    unsigned int ret;
+    int i;
+
+    ret = 0;
+    for (i=LSB_INDEX; i<=MSB_INDE; i++)
+        ret += bv[i] * pow(2,i);
+
+       return ret;
+}
+
+int b2s(char *bv)
+{
+    int ret;
+    ret = 0;
+
+    for (i=LSB_INDEX; i<MSB_INDEX-1; i++)
+        ret += bv[i] * pow(2,i);
+
+    if (bv[MSB_INDEX] == 1)
+        ret *= (-1);
+
+    return ret;
+}
+
+int b2o(char *bv)
+{
+    int ret, i;
+    ret = (-1)*bv[MSB_INDEX]*(pow(2,MSB_INDEX)-1);
+
+    for (i=LSB_INDEX; i<=MSB_INDEX-1; i++)
+        ret += bv[i] * pow(2,i);
+
+    return ret;
+}
+
+int b2t(char *bv)
+{
+    int ret, i, tmp;
+    ret = (-1) * bv[MSB_INDEX] * 2^(MSB_INDEX);
+
+    for (i=LSB_INDEX; i<MSB_INDEX-1; i++)
+        ret += bv[i] * pow(2,i);
+
+    return ret;
+}
+
+unsigned int unsigned_addition(char *bv1, char *bv2)\
+{
+    char result[BIT_VECTOR_LENGTH];
+    bit_addition(bv1, bv2, result);
+    return b2u (result);
+
+}
+
+int twos_complement_addition(char *bv1, char *bv2)
+{
+    char result[BIT_VECTOR_LENGTH];
+
+
+}
+
 
 
