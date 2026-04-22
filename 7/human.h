@@ -1,27 +1,18 @@
-#include <iostream>
-#include <cstring>
-using namespace std;
+#ifndef __HUMAN_H__
+#define __HUMAN_H__
 
-int main(void) {
-    char x[20];
-    int pass = 0;
+class Human {
+    private:
+        const char *name;
+        int age;
 
+    public:
+        Human(const char *name, int age);
+        Human(const char *name);
+        const char *getName();
+        void setAge(int age);
+        int getAge();
+        void print();
+};
 
-    cout << "Enter the password:  ";
-    cin >> x;
-
-    if (strcmp(x, "thegeekstuff")) {
-        cout << "Wrong Password" << endl;
-    } else {
-        cout << "Correct Password" << endl;
-        pass = 1;
-    }
-
-    if (pass){
-        cout << "Root privileges given to the user" << endl;
-    }
-
-    cout << "x (" << (void *)x << ")= " << x << endl;
-    cout << "pass (" << (void *)&pass << ")= " << pass << endl;
-    return 0;
-}
+#endif /* __HUMAN_H__ */

@@ -1,27 +1,32 @@
 #include <iostream>
-#include <cstring>
+#include "human.h"
 using namespace std;
 
-int main(void) {
-    char x[20];
-    int pass = 0;
+Human::Human(const char *name, int age) {
+    this->name = name;
+    this->age = age;
+}
 
+Human::Human(const char *name) {
+    this->name = name;
+    this->age = 0;
+}
 
-    cout << "Enter the password:  ";
-    cin >> x;
+const char * Human::getName() {
+    return this->name;
+}
 
-    if (strcmp(x, "thegeekstuff")) {
-        cout << "Wrong Password" << endl;
-    } else {
-        cout << "Correct Password" << endl;
-        pass = 1;
-    }
+void Human::setAge(int age) {
+    this->age = age;
+}
 
-    if (pass){
-        cout << "Root privileges given to the user" << endl;
-    }
+int Human::getAge() {
+    return this->age;
+}
 
-    cout << "x (" << (void *)x << ")= " << x << endl;
-    cout << "pass (" << (void *)&pass << ")= " << pass << endl;
-    return 0;
+void Human::print() {
+    if (!this->age)
+        cout << "name: " << this->name << ", age: Unknown" << endl;
+    else 
+        cout << "name: " << this->name << ", age: " << this->age << endl;
 }
